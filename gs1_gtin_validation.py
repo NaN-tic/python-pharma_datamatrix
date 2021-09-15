@@ -1,15 +1,17 @@
 """
-The function perform validation on the GS1-GTIN(14) based on the check digit detailed in the link below:
+The function perform validation on the GS1-GTIN(14) based on the check digit
+detailed in the link below:
 https://www.gs1.org/services/how-calculate-check-digit-manually
 
 """
 
+
 def gtin_check(gtin: str):
-    reverse_gtin = gtin[-2::-1] #Reversing the string without the check-digit
+    reverse_gtin = gtin[-2::-1]  # Reversing the string without the check-digit
     digit_multipler3 = []
     digit_multipler1 = []
 
-    for i, l in enumerate(reverse_gtin): 
+    for i, l in enumerate(reverse_gtin):
         if i % 2 == 0:
             digit_multipler3.append(int(l))
         else:
@@ -21,5 +23,3 @@ def gtin_check(gtin: str):
     if check_sum_digit < 0:
         check_sum_digit = 10 + check_sum_digit
     return check_sum_digit == int(gtin[-1])
-
-    
