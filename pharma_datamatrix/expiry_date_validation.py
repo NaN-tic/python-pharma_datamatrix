@@ -8,7 +8,6 @@ The logic also allows 00 for DD, this refers to the last day of the month.
 
 """
 
-
 from datetime import datetime
 
 

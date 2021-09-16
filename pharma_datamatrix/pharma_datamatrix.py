@@ -12,8 +12,8 @@ Possible knowed separators:
 
 """
 
-from gs1_gtin import gs1_gtin
-from ifa_ppn import ifa_ppn
+from .gs1_gtin import gs1_gtin
+from .ifa_ppn import ifa_ppn
 
 
 def pharma_datamatrix(barcode: str, separator=29) -> dict:

@@ -16,9 +16,9 @@ character is <GS> Group-Separator.
 """
 
 # The GTIN validation module
-from gs1_gtin_validation import gtin_check
+from .gs1_gtin_validation import gtin_check
 # The Expiry validation module
-from expiry_date_validation import expiry_date_check
+from .expiry_date_validation import expiry_date_check
 
 result = {'SCHEME': 'GTIN'}
 

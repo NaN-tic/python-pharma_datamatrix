@@ -24,8 +24,8 @@ S	        Serial number	12345ABCDEF98765 (between 12-20 chars)
 """
 
 # The Expiry validation module
-from expiry_date_validation import expiry_date_check
-from ifa_ppn_validation import ppn_check
+from .expiry_date_validation import expiry_date_check
+from .ifa_ppn_validation import ppn_check
 
 result = {'SCHEME': 'PPN'}
 
