@@ -1,3 +1,30 @@
+# encoding: utf8
+###############################################################################
+#
+#    MIT License
+#
+#    Copyright (c) 2021 PinchofLogic
+#    Copyright (C) 2021 NaN Projectes de Programari Lliure, S.L.
+#                            http://www.NaN-tic.com
+#
+#    Permission is hereby granted, free of charge, to any person obtaining a
+#    copy of this software and associated documentation files (the "Software"),
+#    to deal in the Software without restriction, including without limitation
+#    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+#    and/or sell copies of the Software, and to permit persons to whom the
+#    Software is furnished to do so, subject to the following conditions:
+#
+#    The above copyright notice and this permission notice shall be included in
+#    all copies or substantial portions of the Software.
+#
+#    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+#    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+#    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+#    DEALINGS IN THES SOFTWARE.
+###############################################################################
 """
 The function parse the GS1 Datamatrix barcode used for medicine packs.
 The barcode scanners in the default setup outputs the scan is in below format:
@@ -69,19 +96,16 @@ def gs1_gtin(barcode: str, separator=29) -> dict:
                     result['NHRN'] = barcode[3:]
                     barcode = None
             else:
-                return {'ERROR': 'INVALID BARCODE'}
+                return {'ERROR': 'INVALID BARCODE', 'VALUE': barcode}
     else:
-        return {'ERROR': 'INVALID BARCODE'}
+        return {'ERROR': 'INVALID SEPARATOR DEFINED', 'VALUE': separator}
 
     if 'GTIN' and 'BATCH' and 'EXPIRY' and 'SERIAL' in result.keys():
-        if (not gtin_check(result['GTIN']) and
-                not expiry_date_check(result['EXPIRY'])):
-            return {'ERROR': 'INVALID GTIN & EXPIRY DATE'}
-        elif not expiry_date_check(result['EXPIRY']):
-            return {'ERROR': 'INVALID EXPIRY DATE'}
+        if not expiry_date_check(result['EXPIRY']):
+            return {'ERROR': 'INVALID EXPIRY DATE', 'VALUE': result['EXPIRY']}
         elif not gtin_check(result['GTIN']):
-            return {'ERROR': 'INVALID GTIN'}
+            return {'ERROR': 'INVALID GTIN', 'VALUE': result['GTIN']}
         else:
             return result
     else:
-        return {'ERROR': 'INVALID BARCODE'}
+        return {'ERROR': 'MISSING MAIN KEYS IN BARCODE', 'VALUE': result}
