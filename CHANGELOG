@@ -1,0 +1,7 @@
+Version 1.4.0 - 2021-09-16
+* Created structure for the correct installation from setup.py
+* Add possibility to choose which separator is used after scanner read the
+    QR/datamatrix
+
+Version 1.3.1 - 2021-09-16
+* Initial release forked from https://github.com/PinchofLogic/pharma_datamatrix
