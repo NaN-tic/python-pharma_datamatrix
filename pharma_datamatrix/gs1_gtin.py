@@ -47,10 +47,9 @@ from .gs1_gtin_validation import gtin_check
 # The Expiry validation module
 from .expiry_date_validation import expiry_date_check
 
-result = {'SCHEME': 'GTIN'}
-
 
 def gs1_gtin(barcode: str, separator=29) -> dict:
+    result = {'SCHEME': 'GTIN'}
     if chr(separator) in barcode:
         while barcode:
             if barcode[:2] == '01':

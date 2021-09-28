@@ -54,10 +54,9 @@ S	        Serial number	12345ABCDEF98765 (between 12-20 chars)
 from .expiry_date_validation import expiry_date_check
 from .ifa_ppn_validation import ppn_check
 
-result = {'SCHEME': 'PPN'}
-
 
 def ifa_ppn(barcode: str, separator=29) -> dict:
+    result = {'SCHEME': 'PPN'}
     while barcode:
         if barcode[:2] == '9N':
             result['PPN'] = barcode[2:14]
